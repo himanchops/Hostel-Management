@@ -8,6 +8,10 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many_attached :documents
 
+  has_many :hostel_entries
+  has_many :rooms, through: :hostel_entries
+
+
   def full_name
   	"#{first_name} #{last_name}" if first_name || last_name
   end
