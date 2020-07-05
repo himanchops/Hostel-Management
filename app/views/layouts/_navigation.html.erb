@@ -22,7 +22,7 @@
               <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
                 Edit Profile
               <% end %>
-              <a class="dropdown-item" href="#">Another action</a>
+              <%= link_to 'Hostel Entry', tenant_show_path(:id => current_user.id), class: 'dropdown-item' %>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>

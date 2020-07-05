@@ -8,9 +8,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many_attached :documents
 
-  has_many :hostel_entries
-  has_many :rooms, through: :hostel_entries
-
+  has_one :hostel_entry
+  accepts_nested_attributes_for :hostel_entry
 
   def full_name
   	"#{first_name} #{last_name}" if first_name || last_name

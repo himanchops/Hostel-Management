@@ -1,0 +1,105 @@
+<h1>Tenant</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card bg-light text-center" style="width: 30rem;">
+      <% if @user.avatar.attached? %>
+        <%= image_tag(@user.avatar.variant(resize_to_limit: [200,200]), class: 'card-img-top') %>
+      <% end %>
+      <div class="card-body">
+        <p class="card-text">Name: <%= @user.full_name %></p>
+        <p class="card-text">Email: <%= @user.email %></p>
+        <p class="card-text">Mobile: <%= @user.mobile_number %></p>
+        <p class="card-text">Identity Proof:
+          <ul class="list-inline">
+            <% @user.documents.each do |document| %>
+              <li class="list-inline-item"><%= link_to('Document', url_for(document), target: '_blank') %></li>
+            <% end %>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card bg-light text-center" style="width: 30rem;">
+      <div class="card-body">
+        <h2><div class='card header card-title'>Hostel Entry</div></h2>
+          <p class="card-text">Joining Date: <%= @hostel_entry.joining_date.to_formatted_s(:long) %></p>
+          <p class="card-text">Deposit: <%= @hostel_entry.deposit %></p>
+          <p class='card-text'>Vacating Date: <% if @hostel_entry.vacate_date %><%= @hostel_entry.vacate_date.to_formatted_s(:long) %><% else %>Not declared<% end %></p>
+          <p class="card-text">Room: <%= @hostel_entry.room.name %></p>
+          <div class="text-center">
+            <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Edit Hostel Entry</a>
+          </div>
+
+
+
+          <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h4 class="modal-title w-100 font-weight-bold">Edit Hostel Entry</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <%= image_tag(@user.avatar.variant(resize_to_limit: [200,200]), class: 'rounded-circle img-responsive') %>
+                <%= @hostel_entry.user.full_name %>
+                <div class="modal-body mx-3">
+                  <div class="md-form mb-5">
+                    <i class="fas fa-user prefix grey-text"></i>
+                    <input type="text" id="orangeForm-name" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
+                  </div>
+                  <div class="md-form mb-5">
+                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <input type="email" id="orangeForm-email" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
+                  </div>
+
+                  <div class="md-form mb-4">
+                    <i class="fas fa-lock prefix grey-text"></i>
+                    <input type="password" id="orangeForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+                  </div>
+
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button class="btn btn-deep-orange">Sign up</button>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Entry</th>
+      <th scope="col">From</th>
+      <th scope="col">To</th>
+      <th scope="col">Rent</th>
+      <th scope="col">Paid</th>
+      <th scope="col">Payment Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+</table>
