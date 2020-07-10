@@ -21,9 +21,8 @@ class User < ApplicationRecord
   	"#{first_name} #{last_name}" if first_name || last_name
   end
 
-
   def profile_picture
-    self.avatar.variant(resize_and_pad: [250,250]).processed
+    self.avatar.variant(resize_and_pad: [300,300]).processed
   end
 
   private
