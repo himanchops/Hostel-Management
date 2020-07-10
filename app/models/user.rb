@@ -13,12 +13,31 @@ class User < ApplicationRecord
 
   has_many :rooms, through: :hostel_entries
 
+  after_commit :add_default_avatar, on: %i[create update]
+
+
+
   def full_name
   	"#{first_name} #{last_name}" if first_name || last_name
   end
 
 
   def profile_picture
-    self.avatar.variant(resize_to_limit: [200,200]).processed
+    self.avatar.variant(resize_and_pad: [250,250]).processed
   end
+
+  private
+    def add_default_avatar
+      unless avatar.attached?
+        avatar.attach(
+          io: File.open(
+            Rails.root.join(
+              'app', 'assets', 'images', 'default_profile.jpg'
+              )
+            ),
+            filename: 'default_profile.jpg',
+            content_type: 'image/jpg'
+          )
+      end
+    end
 end

@@ -4,9 +4,7 @@
 <div class="row">
   <div class="col-md-6">
     <div class="card bg-light text-center">
-      <% if @user.avatar.attached? %>
-        <%= image_tag(@user.profile_picture, class: 'card-img-top') %>
-      <% end %>
+      <%= image_tag(@user.profile_picture, class: 'card-img-top') %>
       <div class="card-body">
         <p class="card-text">Name: <%= @user.full_name %></p>
         <p class="card-text">Mobile: <%= @user.mobile_number %></p>
@@ -25,7 +23,7 @@
   </div>
 
   <div class="col-md-6">
-      <div class="card bg-light text-center" style="width: 30rem;">
+      <div class="card bg-light text-center">
         <div class="card-body">
           <h2><div class='card header card-title'>Hostel Entry</div></h2>
             <% if !@hostel_entry.nil? %>
