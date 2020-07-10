@@ -36,10 +36,13 @@
 
 
       <% if current_user.documents.attached? %>
-        <% current_user.documents.each do |doc| %>
-          <%= image_tag doc.variant(resize_to_limit: [250, 250]) %>
-        <% end %>
+        <ul class="list-inline">
+          <% @user.documents.each do |document| %>
+            <li class="list-inline-item"><%= link_to('Document', url_for(document), target: '_blank') %></li>
+          <% end %>
+        </ul>
       <% end %>
+      
       <div class="form-group">
         <%= f.label :documents %>
         <%= f.file_field :documents, multiple: true, class: 'form-control' %>

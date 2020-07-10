@@ -22,7 +22,7 @@
               <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
                 Edit Profile
               <% end %>
-              <%= link_to 'Hostel Entry', tenant_show_path(:id => current_user.id), class: 'dropdown-item' %>
+              <%= link_to 'Hostel Entry', user_path(:id => current_user.id), class: 'dropdown-item' %>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
@@ -36,10 +36,6 @@
             <%= link_to("Logout", destroy_user_session_path, class: "btn btn-xs btn-danger logout-btn", method: :delete) %>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
       </div>
 
     <% else %>

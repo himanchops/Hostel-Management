@@ -8,10 +8,17 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many_attached :documents
 
-  has_one :hostel_entry
-  accepts_nested_attributes_for :hostel_entry
+  has_many :hostel_entries
+  accepts_nested_attributes_for :hostel_entries
+
+  has_many :rooms, through: :hostel_entries
 
   def full_name
   	"#{first_name} #{last_name}" if first_name || last_name
+  end
+
+
+  def profile_picture
+    self.avatar.variant(resize_to_limit: [200,200]).processed
   end
 end

@@ -1,0 +1,167 @@
+<h1>Tenant</h1>
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card bg-light text-center">
+      <% if @user.avatar.attached? %>
+        <%= image_tag(@user.profile_picture, class: 'card-img-top') %>
+      <% end %>
+      <div class="card-body">
+        <p class="card-text">Name: <%= @user.full_name %></p>
+        <p class="card-text">Mobile: <%= @user.mobile_number %></p>
+        <p class="card-text">Email: <%= @user.email %></p>
+        <% if @user.documents.attached? %>
+        <p class="card-text">Identity Proof:
+          <ul class="list-inline">
+            <% @user.documents.each do |document| %>
+              <li class="list-inline-item"><%= link_to('Document', url_for(document), target: '_blank') %></li>
+            <% end %>
+          </ul>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+      <div class="card bg-light text-center" style="width: 30rem;">
+        <div class="card-body">
+          <h2><div class='card header card-title'>Hostel Entry</div></h2>
+            <% if !@hostel_entry.nil? %>
+              <p class="card-text">Joining Date: <%= @hostel_entry.joining_date.to_formatted_s(:long) %></p>
+              <p class="card-text">Deposit: <%= @hostel_entry.deposit %></p>
+              <p class='card-text'>Vacating Date: <% if @hostel_entry.vacate_date %><%= @hostel_entry.vacate_date.to_formatted_s(:long) %><% else %>Not declared<% end %></p>
+              <p class="card-text">Room: <%= @hostel_entry.room.name %></p>
+              <div class="text-center">
+                <button type='button' class="btn btn-primary btn-rounded mb-4" data-toggle='modal' data-target='#modalEditHostelEntryForm'>Edit Hostel Entry</button>
+              </div>
+
+
+              <div class="modal fade" id="modalEditHostelEntryForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h4 class="modal-title">Edit Hostel Entry</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <%= @user.full_name %>
+
+                      <%= form_with(model: @user, local: true) do |f| %>
+                        <%= fields_for :hostel_entries do |he_form| %>
+                          <div class="form-group">
+                              <%= he_form.label :joining_date, class: 'col-form-label' %>
+                              <%= he_form.date_field :joining_date, class: 'form-control' %>
+                          </div>
+                          <div class="form-group">
+                            <%= he_form.label :vacate_date, class: 'col-form-label' %>
+                            <%= he_form.date_field :vacate_date, class: 'form-control' %>
+                          </div>
+                          <div class="form-group">
+                            <%= he_form.label :booking_date, class: 'col-form-label' %>
+                            <%= he_form.date_field :booking_date, class: 'form-control' %>
+                          </div>
+                          <div class="form-group">
+                            <%= he_form.label :deposit, class: 'col-form-label' %>
+                            <%= he_form.text_field :deposit, class: 'form-control' %>
+                          </div>
+                          <div class="form-group">
+                            <%= he_form.label :room_id, class: 'col-form-label' %>
+                            <%= he_form.collection_select :room_id, @rooms, :id, :name, include_blank: true, class: 'form-control' %>
+                          </div>
+                        <% end %>
+                    </div>
+                    <div class="modal-footer">
+                      <%= f.submit "submit", class: 'btn btn-deep-orange'  %>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+            <% else %>
+              <div class="text-center">
+                <button type='button' class="btn btn-primary btn-rounded mb-4" data-toggle='modal' data-target='#modalHostelEntryForm'>Add Hostel Entry</button>
+              </div>
+            <% end %>
+
+            <div class="modal fade" id="modalHostelEntryForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h4 class="modal-title">Add Hostel Entry</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <% if @user.avatar.attached? %>
+                      <%= image_tag(@user.avatar.variant(resize_to_limit: [300,300]), class: 'rounded-circle img-responsive') %>
+                    <% end %>
+                    <%= @user.full_name %>
+
+                    <%= form_with(model: @user, local: true) do |f| %>
+                      <%= fields_for :hostel_entries do |he_form| %>
+                        <div class="form-group">
+                            <%= he_form.label :joining_date, class: 'col-form-label' %>
+                            <%= he_form.date_field :joining_date, class: 'form-control' %>
+                        </div>
+                        <div class="form-group">
+                          <%= he_form.label :vacate_date, class: 'col-form-label' %>
+                          <%= he_form.date_field :vacate_date, class: 'form-control' %>
+                        </div>
+                        <div class="form-group">
+                          <%= he_form.label :booking_date, class: 'col-form-label' %>
+                          <%= he_form.date_field :booking_date, class: 'form-control' %>
+                        </div>
+                        <div class="form-group">
+                          <%= he_form.label :deposit, class: 'col-form-label' %>
+                          <%= he_form.text_field :deposit, class: 'form-control' %>
+                        </div>
+                        <div class="form-group">
+                          <%= he_form.label :room_id, class: 'col-form-label' %>
+                          <%= he_form.collection_select :room_id, @rooms, :id, :name, include_blank: true, class: 'form-control' %>
+                        </div>
+                      <% end %>
+                  </div>
+                  <div class="modal-footer">
+                    <%= f.submit "submit", class: 'btn btn-deep-orange'  %>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+      </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Entry</th>
+          <th scope="col">From</th>
+          <th scope="col">To</th>
+          <th scope="col">Rent</th>
+          <th scope="col">Paid</th>
+          <th scope="col">Payment Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
