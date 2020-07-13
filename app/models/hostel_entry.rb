@@ -4,15 +4,16 @@ class HostelEntry < ApplicationRecord
 
 	validates :joining_date, presence: true
 
-	before_save :fill_date
+	before_save :fill_date_deposit
 
-	def fill_date
-		if !booking_date.present?
-			self.booking_date = Date.current
+	private
+		def fill_date_deposit
+			if !booking_date.present?
+				self.booking_date = Date.current
+			end
+			if !deposit.present?
+				self.deposit = 0
+			end
 		end
-		if !deposit.present?
-			self.deposit = 0
-		end
-	end
 
 end
