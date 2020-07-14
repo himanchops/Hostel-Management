@@ -74,10 +74,11 @@
                           <%= he_form.label :room_id, class: 'col-form-label' %>
                           <%= he_form.collection_select :room_id, @rooms, :id, :name, class: 'form-control' %>
                         </div>
+
                       <% end %>
                   </div>
                   <div class="modal-footer">
-                    <%= f.submit "submit", class: 'btn btn-deep-orange'  %>
+                    <%= f.submit "submit", class: 'btn btn-deep-orange' %>
                   </div>
                   <% end %>
                 </div>

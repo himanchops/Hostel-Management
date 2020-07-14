@@ -7,12 +7,6 @@
 
       
       <%= image_tag(resource.profile_picture) %>
-      <div class='form-row'>
-        <div class="form-group col-md-6">
-          <%= f.label "Profile Photo" %>
-          <%= f.file_field :avatar, class: 'form-control' %>
-        </div>
-      </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -37,6 +31,14 @@
         </div>
       </div>
 
+      <div class='form-row'>
+        <div class="form-group col-md-6">
+          <%= f.label "Profile Photo" %>
+          <%= f.file_field :avatar, class: 'form-control' %>
+        </div>
+      </div>
+
+      <p>Uploaded Documents: </p>
       <% if resource.documents.attached? %>
         <ul class="list-inline">
           <% @user.documents.each do |document| %>
@@ -47,28 +49,30 @@
       
       <div class="form-row">
         <div class="form-group col-md-6">
-          <%= f.label :documents %>
           <%= f.file_field :documents, multiple: true, class: 'form-control' %>
         </div>
       </div>
 
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= f.label :new_password %>
+          <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
 
-        <small class="form-text text-muted"><%= t('.leave_blank_if_you_do_not_want_to_change_it') %></small>
+<!--           <small class="form-text text-muted"><%= t('.leave_blank_if_you_do_not_want_to_change_it') %></small> -->
+        </div>
+
+        <div class="form-group col-md-6">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'  %>
+        </div>
       </div>
 
-      <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'  %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :current_password %>
-        <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
-
-        <small class="form-text text-muted"><%= t('.enter_current_password_to_confirm_your_changes') %></small>
+      <div class="form-row">
+        <div class="form-group col-md-9">
+          <%= f.label :current_password %>
+          <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
+          <small class="form-text text-muted"><%= t('.enter_current_password_to_confirm_your_changes') %></small>
+        </div>
       </div>
 
       <div class="form-group">
