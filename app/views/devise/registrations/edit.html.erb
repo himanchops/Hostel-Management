@@ -5,11 +5,13 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= bootstrap_devise_error_messages! %>
 
-      <%= image_tag(resource.profile_picture) %>
       
-      <div class="form-group">
-        <%= f.label "Profile Photo" %>
-        <%= f.file_field :avatar, class: 'form-control' %>
+      <%= image_tag(resource.profile_picture) %>
+      <div class='form-row'>
+        <div class="form-group col-md-6">
+          <%= f.label "Profile Photo" %>
+          <%= f.file_field :avatar, class: 'form-control' %>
+        </div>
       </div>
 
       <div class="form-row">
@@ -23,18 +25,19 @@
         </div>
       </div>
       
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+        </div>
+
+        <div class="form-group col-md-6">
+          <%= f.label :mobile_number %>
+          <%= f.text_field :mobile_number, autofocus: true, autocomplete: 'mobile number', class: 'form-control' %>
+        </div>
       </div>
 
-      <div class="form-group">
-        <%= f.label :mobile_number %>
-        <%= f.text_field :mobile_number, autofocus: true, autocomplete: 'mobile number', class: 'form-control' %>
-      </div>
-
-
-      <% if current_user.documents.attached? %>
+      <% if resource.documents.attached? %>
         <ul class="list-inline">
           <% @user.documents.each do |document| %>
             <li class="list-inline-item"><%= link_to('Document', url_for(document), target: '_blank') %></li>
@@ -42,11 +45,12 @@
         </ul>
       <% end %>
       
-      <div class="form-group">
-        <%= f.label :documents %>
-        <%= f.file_field :documents, multiple: true, class: 'form-control' %>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= f.label :documents %>
+          <%= f.file_field :documents, multiple: true, class: 'form-control' %>
+        </div>
       </div>
-
 
       <div class="form-group">
         <%= f.label :password %>

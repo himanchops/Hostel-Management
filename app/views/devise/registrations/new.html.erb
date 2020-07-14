@@ -16,16 +16,18 @@
         </div>
       </div>
       
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+        </div>
+        
+        <div class="form-group col-md-6">
+          <%= f.label :mobile_number %>
+          <%= f.text_field :mobile_number, autofocus: true, autocomplete: 'mobile number', class: 'form-control' %>
+        </div>
       </div>
-      
-      <div class="form-group">
-        <%= f.label :mobile_number %>
-        <%= f.text_field :mobile_number, autofocus: true, autocomplete: 'mobile number', class: 'form-control' %>
-      </div>
-      
+
       <div class="form-row">
         <div class="form-group col-md-6">
           <%= f.label "Profile Photo" %>
@@ -37,18 +39,21 @@
         </div>
       </div>
       
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control' %>
+      <div class="form-row">
+        <div class="form-group col-md-9">
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control' %>
 
-        <% if @minimum_password_length %>
-          <small class="form-text text-muted"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></small>
-        <% end %>
+          <% if @minimum_password_length %>
+            <small class="form-text text-muted"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></small>
+          <% end %>
+        </div>
       </div>
-
-      <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control' %>
+      <div class="form-row">
+        <div class="form-group col-md-9">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control' %>
+        </div>
       </div>
 
       <div class="form-group">

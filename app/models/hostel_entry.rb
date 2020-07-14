@@ -3,9 +3,27 @@ class HostelEntry < ApplicationRecord
 	belongs_to :room, optional: :true
 
 	validates :joining_date, presence: true
-
 	before_save :fill_date_deposit
 
+	def display_joining_date
+		self.joining_date.to_formatted_s(:long)
+	end
+
+	def display_vacate_date
+		if vacate_date.nil?
+			return 'Not declared'
+		else
+			self.vacate_date.to_formatted_s(:long)
+		end
+	end
+
+	def display_room
+		if self.room_id.nil?
+			return 'Nil'
+		else
+			self.room.name
+		end
+	end
 	private
 		def fill_date_deposit
 			if !booking_date.present?

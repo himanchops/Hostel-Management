@@ -12,22 +12,17 @@ class TenantsController < ApplicationController
       @hostel_entry = @user.hostel_entries.build(hostel_entry_params) 
       if @hostel_entry.save
         flash[:notice] = "New hostel entry added successfully"
-        redirect_to @user
       else
         flash[:notice] = "Unsuccessful entry"
-        @user.hostel_entries.reload
-        render 'show'
       end
     else
       if @user.hostel_entries.update(hostel_entry_params)
         flash[:notice] = "Hostel Entry updated successfully"
-        redirect_to @user
       else
         flash[:alert] = "Unsuccessful entry"
-        @user.hostel_entries.reload
-        render 'show'
       end
     end
+    redirect_to @user
   end
 
 
@@ -37,3 +32,7 @@ class TenantsController < ApplicationController
   	end
 end
 
+
+
+# FOR INDEX ACTION
+# @messages = Message.all.with_attached_images
