@@ -8,9 +8,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many_attached :documents
 
-  has_many :hostel_entries
-  accepts_nested_attributes_for :hostel_entries
-
+  has_many :hostel_entries, dependent: :destroy
   has_many :rooms, through: :hostel_entries
 
   after_commit :add_default_avatar, on: %i[create update]

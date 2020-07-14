@@ -1,0 +1,2 @@
+module HostelEntriesHelper
+end

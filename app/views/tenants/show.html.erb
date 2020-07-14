@@ -33,7 +33,9 @@
               <p class="card-text">Room: <%= @hostel_entry.display_room %></p>
               <div class="text-center">
                 <button type='button' class="btn btn-primary btn-rounded mb-4" data-toggle='modal' data-target='#modalHostelEntryForm'>Edit Hostel Entry</button>
+                <%= link_to 'Delete entry', [@user, @hostel_entry], method: :delete, data: { confirm: 'Are your sure?'}, class: 'btn btn-primary btn-rounded mb-4' %>
               </div>
+
 
             <% else %>
               <div class="text-center">
@@ -52,7 +54,7 @@
                   </div>
                   <div class="modal-body">
                     <%= @user.full_name %>
-                    <%= form_with(model: @user, local: true) do |f| %>
+                    <%= form_with(model: [@user, @user.hostel_entries.build], local: true) do |form| %>
                       <%= fields_for :hostel_entry do |he_form| %>
                         <div class="form-group">
                             <%= he_form.label :joining_date, class: 'col-form-label' %>
@@ -74,11 +76,10 @@
                           <%= he_form.label :room_id, class: 'col-form-label' %>
                           <%= he_form.collection_select :room_id, @rooms, :id, :name, class: 'form-control' %>
                         </div>
-
                       <% end %>
                   </div>
                   <div class="modal-footer">
-                    <%= f.submit "submit", class: 'btn btn-deep-orange' %>
+                    <%= form.submit "submit", class: 'btn btn-dark' %>
                   </div>
                   <% end %>
                 </div>
