@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_04_094507) do
+ActiveRecord::Schema.define(version: 2020_07_15_201942) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +46,18 @@ ActiveRecord::Schema.define(version: 2020_07_04_094507) do
     t.index ["user_id"], name: "index_hostel_entries_on_user_id"
   end
 
+  create_table "rent_entries", force: :cascade do |t|
+    t.date "from_date"
+    t.date "to_date"
+    t.integer "rent"
+    t.date "payment_date"
+    t.integer "amount_paid"
+    t.integer "hostel_entry_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hostel_entry_id"], name: "index_rent_entries_on_hostel_entry_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.integer "capacity"
@@ -76,4 +88,5 @@ ActiveRecord::Schema.define(version: 2020_07_04_094507) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "hostel_entries", "rooms"
   add_foreign_key "hostel_entries", "users"
+  add_foreign_key "rent_entries", "hostel_entries"
 end

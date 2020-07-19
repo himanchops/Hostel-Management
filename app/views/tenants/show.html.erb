@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-md-6">
-    <div class="card bg-light text-center">
+    <div class="card bg-light text-center tenant-card">
       <div class="card-body">
         <%= image_tag(@user.profile_picture, class: 'img-fluid rounded mx-auto d-block') %>
         <p class="card-text">Name: <%= @user.full_name %></p>
@@ -25,7 +25,7 @@
   <div class="col-md-6">
       <div class="card bg-light text-center">
         <div class="card-body">
-          <h2><div class='card header card-title'>Hostel Entry</div></h2>
+          <h2><div class='card header font-weight-bold card-title'>Hostel Entry</div></h2>
             <% if !@hostel_entry.nil? %>
               <p class="card-text">Joining Date: <%= @hostel_entry.display_joining_date %></p>
               <p class="card-text">Deposit: <%= @hostel_entry.deposit %></p>
@@ -132,29 +132,49 @@
       </div>
     </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-bordered table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Entry</th>
-          <th scope="col">From</th>
-          <th scope="col">To</th>
-          <th scope="col">Rent</th>
-          <th scope="col">Paid</th>
-          <th scope="col">Payment Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-        </tr>
-      </tbody>
-    </table>
+<h2 class='text-center'>Rent Entries</h2>
+
+<div class="text-right">
+  <%= link_to 'New Entry', new_user_hostel_entry_rent_entry_path(user_id: @user.id, hostel_entry_id: @hostel_entry.id)%>
+</div>
+
+<div class="container">
+  <div class="row">
+<% if !@hostel_entry.rent_entries.empty? %>
+  <div class="divTable RentEntry my-custom-scrollbar">
+    <div class="divTableHeading">
+      <div class="divTableRow col-md-12">
+        <div class="divTableHead">From</div>
+        <div class="divTableHead">To</div>
+        <div class="divTableHead">Rent</div>
+        <div class="divTableHead">Payment Status</div>
+        <div class="divTableHead">Actions</div>
+      </div>
+    </div>
+    <div class="divTableBody">
+      <% @hostel_entry.rent_entries.each do |rent_entry| %>
+        <div class="divTableRow">
+          <div class="divTableCell"><%= rent_entry.display_date(rent_entry.from_date) %></div>
+          <div class="divTableCell"><%= rent_entry.display_date(rent_entry.to_date) %></div>
+          <div class="divTableCell"><%= rent_entry.rent %></div>
+          <div class="divTableCell"><%= rent_entry.payment %></div>
+          <div class="divTableCell">
+            <%= link_to "Edit" %>
+            <%= link_to "Delete" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="divTableFoot tableFootStyle">
+      <div class="divTableRow">
+        <div class="divTableCell">From</div>
+        <div class="divTableCell">To</div>
+        <div class="divTableCell">Rent</div>
+        <div class="divTableCell">Payment Status</div>
+        <div class="divTableCell">Actions</div>
+      </div>
+    </div>
   </div>
+<% end %>
+</div>
 </div>

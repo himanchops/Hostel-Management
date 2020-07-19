@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
   resources :tenants, :as => 'users' do 
-  	resources :hostel_entries
+  	resources :hostel_entries do
+  		resources :rent_entries
+  	end
   end
 
   

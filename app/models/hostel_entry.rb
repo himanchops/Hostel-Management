@@ -2,6 +2,8 @@ class HostelEntry < ApplicationRecord
 	belongs_to :user, optional: :true
 	belongs_to :room, optional: :true
 
+	has_many :rent_entries
+
 	validates :joining_date, presence: true
 	before_save :fill_date_deposit
 

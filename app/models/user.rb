@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
 
   def profile_picture
-    self.avatar.variant(resize_and_pad: [300,300]).processed
+    self.avatar.variant(resize_and_pad: [200,200]).processed
   end
 
   private
