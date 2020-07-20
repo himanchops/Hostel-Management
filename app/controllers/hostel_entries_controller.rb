@@ -1,13 +1,13 @@
 class HostelEntriesController < ApplicationController
   def create
-	@user = User.find(params[:user_id])
-	@hostel_entry = @user.hostel_entries.build(hostel_entry_params) 
-	if @hostel_entry.save
-		flash[:notice] = "New hostel entry added successfully"
-	else
-		flash[:notice] = "Unsuccessful entry"
-  	end
-  	redirect_to @user
+	 @user = User.find(params[:user_id])
+	 @hostel_entry = @user.hostel_entries.build(hostel_entry_params) 
+	 if @hostel_entry.save
+	   flash[:notice] = "New hostel entry added successfully"
+	 else
+	   flash[:notice] = "Unsuccessful entry"
+   end
+   redirect_to @user
   end
 
   def update
