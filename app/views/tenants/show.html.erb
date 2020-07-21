@@ -153,7 +153,9 @@
       </div>
       <div class="divTableBody" id='rent-entry-table-body'>
         <% @hostel_entry.rent_entries.each do |rent_entry| %>
-          <%= render rent_entry %>
+          <%= content_tag :div, class: 'divTableRow', id: dom_id(rent_entry) do %>
+            <%= render rent_entry %>
+          <% end %>
         <% end %>
       </div>
       <div class="divTableFoot tableFootStyle">

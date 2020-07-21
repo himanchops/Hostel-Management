@@ -1,4 +1,4 @@
-<%= form_with url: user_hostel_entry_rent_entries_path, class: 'divTableRow', id: 'new-rent-entry-inline-form' do |form| %>
+<%= form_with model: @rent_entry, url: user_hostel_entry_rent_entry_path, class: 'divTableRow', id: dom_id(rent_entry, 'inline_form') do |form| %>
 	<%= fields_for :rent_entry do |f| %>
 		<div class="divTableCell"><%= f.date_field :from_date, placeholder: 'Starting Date' %></div>
 		<div class="divTableCell"><%= f.date_field :to_date, placeholder: 'Ending Date' %></div>

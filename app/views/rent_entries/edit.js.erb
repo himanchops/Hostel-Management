@@ -1,0 +1,2 @@
+document.getElementById('<%= dom_id(@rent_entry) %>').insertAdjacentHTML('afterend', "<%= j render 'edit_inline_form', rent_entry: @rent_entry %>");
+document.getElementById('<%= dom_id(@rent_entry) %>').style.display = 'none';

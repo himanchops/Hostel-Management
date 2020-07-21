@@ -1,0 +1,3 @@
+document.getElementById("<%= dom_id(@rent_entry, 'inline_form') %>").remove();
+document.getElementById("<%= dom_id(@rent_entry) %>").innerHTML = "<%= j render @rent_entry %>";
+document.getElementById("<%= dom_id(@rent_entry) %>").style.display = 'table-row';

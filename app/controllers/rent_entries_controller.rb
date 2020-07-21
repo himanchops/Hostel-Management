@@ -12,7 +12,7 @@ class RentEntriesController < ApplicationController
 	    	if @rent_entry.save
 	      		format.js
 	      		format.html { redirect_to @user, notice: 'Rent entry added.' }
-	      		format.json { render :user, status: :created, location: @rent_entry }
+	      		format.json { render :user, status: :created, location: @user }
 	    	else
 	      		format.html { render :new }
 	      		format.json { render json: @rent_entry.errors, status: :unprocessable_entity }
@@ -21,6 +21,23 @@ class RentEntriesController < ApplicationController
 	end
 
 	def edit
+		@rent_entry = RentEntry.find(params[:id])
+	end
+
+	def update
+		@user = User.find(params[:user_id])
+		@hostel_entry = HostelEntry.find(params[:hostel_entry_id])
+		@rent_entry = RentEntry.find(params[:id])
+		respond_to do |format|
+		  if @rent_entry.update(rent_entry_params)
+		    format.js
+		    format.html { redirect_to @user, notice: 'Rent entry was successfully updated.' }
+		    format.json { render :user, status: :ok, location: @user }
+		  else
+		    format.html { render :edit }
+		    format.json { render json: @user.errors, status: :unprocessable_entity }
+		  end
+		end
 	end
 
 	def destroy
