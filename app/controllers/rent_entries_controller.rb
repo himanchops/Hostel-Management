@@ -23,11 +23,19 @@ class RentEntriesController < ApplicationController
 	def edit
 	end
 
-	def destory
+	def destroy
+		@user = User.find(params[:user_id])
+		@rent_entry = RentEntry.find(params[:id])
+		@rent_entry.destroy
+		respond_to do |format|
+		  format.js
+		  format.html { redirect_to @user, notice: 'Rent entry was successfully destroyed.' }
+		  format.json { head :no_content }
+		end
 	end
 
 	private
 		def rent_entry_params
-			params.permit(:from_date, :to_date, :rent, :amount_paid)
+			params.require(:rent_entry).permit(:from_date, :to_date, :rent, :amount_paid, :payment_date)
 		end
 end

@@ -1,7 +1,12 @@
 <%= form_with url: user_hostel_entry_rent_entries_path, class: 'divTableRow', id: 'new-rent-entry-inline-form' do |form| %>
-	<div class="divTableCell"><%= form.date_field :from_date, placeholder: 'Starting Date' %></div>
-	<div class="divTableCell"><%= form.date_field :to_date, placeholder: 'Ending Date' %></div>
-	<div class="divTableCell"><%= form.text_field :rent, placeholder: 'Rent' %></div>
-	<div class="divTableCell"><%= form.text_field :amount_paid, placeholder: 'Amount Paid' %></div>
-	<div class="divTableCell"><%= form.submit "submit", class: 'btn btn-dark' %></div>
+	<%= fields_for :rent_entry do |f| %>
+	<div class="divTableCell"><%= f.date_field :from_date, placeholder: 'Starting Date' %></div>
+	<div class="divTableCell"><%= f.date_field :to_date, placeholder: 'Ending Date' %></div>
+	<div class="divTableCell"><%= f.text_field :rent, placeholder: 'Rent' %></div>
+	<div class="divTableCell">
+		<%= f.text_field :amount_paid, placeholder: 'Amount Paid' %>
+		<%= f.date_field :payment_date %>		
+	</div>
+	<div class="divTableCell"><%= f.submit "submit", class: 'btn btn-dark' %></div>
+	<% end %>
 <% end %>

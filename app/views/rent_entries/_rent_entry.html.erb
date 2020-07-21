@@ -5,6 +5,6 @@
     <div class="divTableCell"><%= rent_entry.payment %></div>
     <div class="divTableCell">
       <%= link_to "Edit" %>
-      <%= link_to "Delete" %>
+      <%= link_to "Delete", user_hostel_entry_rent_entry_path(@user, @hostel_entry, rent_entry), method: :delete, data: {confirm: 'Are your sure?', remote: true }, class: 'delete' %>
     </div>
 </div>
