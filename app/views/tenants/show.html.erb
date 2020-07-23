@@ -132,43 +132,40 @@
 </div>
 
 
-<div class="container">
-  <div class="row">
+<div class="row">
+  <div class='card bg-light text-center'>
+    <div class='card-body'>
+      <h2><div class='card header font-weight-bold card-title'>Rent Entries</div></h2>
 
-    <div class='card bg-light text-center'>
-      <div class='card-body'>
-        <h2><div class='card header font-weight-bold card-title'>Rent Entries</div></h2>
-
-        <div class="text-right", id="new-rent-entry">
-          <%= link_to 'New Entry', new_user_hostel_entry_rent_entry_path(user_id: @user.id, hostel_entry_id: @hostel_entry.id), remote: true %>
-        </div>
-        <div class="divTable RentEntry my-custom-scrollbar" id="rent-entry-table">
-          <div class="divTableHeading">
-            <div class="divTableRow">
-              <div class="divTableHead">From</div>
-              <div class="divTableHead">To</div>
-              <div class="divTableHead">Rent</div>
-              <div class="divTableHead">Payment Status</div>
-              <div class="divTableHead">Actions</div>
-            </div>
+      <div class="text-right", id="new-rent-entry">
+        <%= link_to 'New Entry', new_user_hostel_entry_rent_entry_path(user_id: @user.id, hostel_entry_id: @hostel_entry.id), remote: true %>
+      </div>
+      <div class="divTable RentEntry my-custom-scrollbar" id="rent-entry-table">
+        <div class="divTableHeading">
+          <div class="divTableRow">
+            <div class="divTableHead">From</div>
+            <div class="divTableHead">To</div>
+            <div class="divTableHead">Rent</div>
+            <div class="divTableHead">Payment Status</div>
+            <div class="divTableHead">Actions</div>
           </div>
-          <div class="divTableBody" id='rent-entry-table-body'>
-            <% if !@hostel_entry.rent_entries.empty? %>
-              <% @hostel_entry.rent_entries.each do |rent_entry| %>
-                <%= content_tag :div, class: 'divTableRow', id: dom_id(rent_entry) do %>
-                  <%= render rent_entry %>
-                <% end %>
+        </div>
+        <div class="divTableBody" id='rent-entry-table-body'>
+          <% if !@hostel_entry.rent_entries.empty? %>
+            <% @hostel_entry.rent_entries.each do |rent_entry| %>
+              <%= content_tag :div, class: 'divTableRow', id: dom_id(rent_entry) do %>
+                <%= render rent_entry %>
               <% end %>
             <% end %>
-          </div>
-          <div class="divTableFoot tableFootStyle">
-            <div class="divTableRow">
-              <div class="divTableCell">From</div>
-              <div class="divTableCell">To</div>
-              <div class="divTableCell">Rent</div>
-              <div class="divTableCell">Payment Status</div>
-              <div class="divTableCell">Actions</div>
-            </div>
+          <% end %>
+        </div>
+        <div class="divTableFoot tableFootStyle">
+          <div class="divTableRow">
+            <div class="divTableCell">From</div>
+            <div class="divTableCell">To</div>
+            <div class="divTableCell">Rent</div>
+            <div class="divTableCell">Payment Status</div>
+            <div class="divTableCell">Actions</div>
           </div>
         </div>
       </div>

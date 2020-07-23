@@ -6,6 +6,10 @@ class TenantsController < ApplicationController
     @rooms = Room.all
   end
 
+  def index
+  	@users = User.all
+  end
+
 end
 
 

@@ -9,7 +9,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class='nav-item <%= 'active' if request.path == root_path %>' >
-            <%= link_to("Tenants", "#", class: 'nav-link') %>
+            <%= link_to("Tenants", users_path, class: 'nav-link') %>
           </li>
           <li class='nav-item <%= 'active' if request.path == root_path %>' >
             <%= link_to("Rooms", "#", class: 'nav-link') %>
