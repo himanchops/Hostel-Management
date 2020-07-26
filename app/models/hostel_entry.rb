@@ -1,4 +1,6 @@
 class HostelEntry < ApplicationRecord
+	default_scope -> { order(start_date: :desc) }
+
 	belongs_to :user, optional: :true
 	belongs_to :room, optional: :true
 

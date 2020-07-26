@@ -7,7 +7,7 @@ class TenantsController < ApplicationController
   end
 
   def index
-  	@users = User.all
+  	@users = User.all.with_attached_avatar.includes(:hostel_entries)
   end
 
 end

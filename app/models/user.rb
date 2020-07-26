@@ -23,6 +23,10 @@ class User < ApplicationRecord
     self.avatar.variant(resize_and_pad: [200,200]).processed
   end
 
+  def display_hostel_details
+  
+  end
+
   private
     def add_default_avatar
       unless avatar.attached?

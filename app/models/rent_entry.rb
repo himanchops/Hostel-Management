@@ -16,7 +16,7 @@ class RentEntry < ApplicationRecord
   	if date.nil?
   		'Nil'
   	else
-  		date.to_formatted_s(:db)
+  		date.to_formatted_s(:short)
   	end
   end
 end
