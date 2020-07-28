@@ -7,12 +7,9 @@ class TenantsController < ApplicationController
   end
 
   def index
-  	@users = User.all.with_attached_avatar.includes(:hostel_entries)
+  	@users = User.with_attached_avatar.includes(:hostel_entries)
+  	@current_users = User.with_attached_avatar.includes(:hostel_entries).where(hostel_entries: { vacated: false })
+  	@vacated_users = User.with_attached_avatar.includes(:hostel_entries).where(hostel_entries: { vacated: true })
   end
 
 end
-
-
-
-# FOR INDEX ACTION
-# @messages = Message.all.with_attached_images

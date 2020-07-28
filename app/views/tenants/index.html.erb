@@ -1,39 +1,44 @@
 <h1 class='text-center'>Tenant Listing</h1>
 
 
-<div class="row mb-2">
-	<% @users.each do |user| %>
-
-		<div class="col-md-6">
-			<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-				<div class="col-auto d-none d-lg-block">
-					<%= image_tag(user.profile_picture, class: "bd-placeholder-img") %>
-				</div>
-				<div class="col p-4 d-flex flex-column position-static">
-					<h3 class="mb-0"><%= user.full_name %></h3>
-					<div class="mb-1 text-muted"><label>Contact: </label> <%= user.mobile_number %> </div>
-					<% @hostel_entry = user.hostel_entries.first %>
-					<% @rent_entry = @hostel_entry.rent_entries.first %>
-					<% if !@hostel_entry.nil? %>
-						<div class="card-text mb-auto">
-							<li class="list-group-item">Room No: <%= @hostel_entry.room_id %>, Deposit: <%= @hostel_entry.deposit %></li>
-							<% if !@rent_entry.nil? %>
-									<p>Current entry:</p>
-									<ul class="list-group list-group-horizontal">
-									  <li class="list-group-item"><%= @rent_entry.display_date(@rent_entry.from_date) %> - <%= @rent_entry.display_date(@rent_entry.to_date) %></li>
-									  <li class="list-group-item">Rent <%= @rent_entry.rent %></li>
-									</ul>
-									<li class="list-group-item"><%= @rent_entry.payment %></li>
-
-							<% end %>
-						</div>
-					<% end %>
-					<%= link_to 'View profile', user_path(user), class: 'stretched-link' %>
-				</div>
-			</div>
-		</div>
-
-	<% end %>
-</div>
-
-
+<ul class="nav nav-tabs nav-fill nav-justified">
+        <li class="nav-item">
+        	<%= link_to "All", "#all", {:class => "nav-link active", 'data-toggle' => 'tab'} %>
+        </li>
+        <li class="nav-item">
+        	<%= link_to "Current", "#current", {:class => "nav-link", 'data-toggle' => 'tab'} %>
+        </li>
+        <li class="nav-item">
+        	<%= link_to "Vacated", "#vacated", {:class => "nav-link", 'data-toggle' => 'tab'} %>
+        </li>
+        <li class="nav-item">
+        	<%= link_to "Rent Due", "#duerent", {:class => "nav-link", 'data-toggle' => 'tab'} %>
+        </li>
+    </ul>
+    <div class="tab-content">
+    	<div class="tab-pane fade show active" id="all">
+    		<div class="row mb-2">
+    			<% @users.each do |user| %>
+    				<%= render 'user', user: user %>
+    			<% end %>
+    		</div>
+    	</div>
+        <div class="tab-pane fade" id="current">
+            <div class="row mb-2">
+            	<% @current_users.each do |user| %>
+            		<%= render 'user', user: user %>
+            	<% end %>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="vacated">
+        	<div class="row mb-2">
+        		<% @vacated_users.each do |user| %>
+        			<%= render 'user', user: user %>
+        		<% end %>
+        	</div>
+        </div>
+        <div class="tab-pane fade" id="duerent">
+            <h4 class="mt-2">Messages tab content</h4>
+            <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+        </div>
+    </div>

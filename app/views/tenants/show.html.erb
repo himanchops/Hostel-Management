@@ -67,6 +67,12 @@
                             <%= he_form.label :room_id, class: 'col-form-label' %>
                             <%= he_form.collection_select :room_id, @rooms, :id, :name, class: 'form-control' %>
                           </div>
+
+                          <div class="form-group">
+                            <%= he_form.label :vacated, class: 'col-form-label' %>
+                            <%= he_form.check_box :vacated %>
+                          </div>
+
                         <% end %>
                     </div>
                     <div class="modal-footer">
@@ -175,3 +181,12 @@
     </div>
   </div>
 </div>
+
+
+
+
+<!-- Switch 
+<div class="custom-control custom-switch">
+  <input type="checkbox" class="custom-control-input" id="customSwitches">
+  <label class="custom-control-label" for="customSwitches">Temp Vacated</label>
+</div> -->

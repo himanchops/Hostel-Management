@@ -29,6 +29,6 @@ class HostelEntriesController < ApplicationController
 
   private
   	def hostel_entry_params
-  		params.require(:hostel_entry).permit(:joining_date, :vacate_date, :booking_date, :deposit, :room_id)
+  		params.require(:hostel_entry).permit(:joining_date, :vacate_date, :booking_date, :deposit, :room_id, :vacated)
   	end  
 end

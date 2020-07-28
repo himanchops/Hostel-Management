@@ -1,6 +1,11 @@
 class RentEntry < ApplicationRecord
   belongs_to :hostel_entry
-  default_scope -> { order(from_date: :desc) }
+  default_scope -> { order(to_date: :desc) }
+
+  validates :from_date, presence: true
+  validates :rent, presence: true, numericality: {only_integer: true}
+  
+  before_save :fill_details
 
   def payment
   	return if self.amount_paid.nil?
@@ -19,4 +24,11 @@ class RentEntry < ApplicationRecord
   		date.to_formatted_s(:short)
   	end
   end
+
+  private
+    def fill_details
+      unless amount_paid.present?
+        self.amount_paid = 0
+      end
+    end
 end

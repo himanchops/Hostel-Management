@@ -1,0 +1,27 @@
+<div class="col-md-6">
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col-auto d-none d-lg-block">
+            <%= image_tag(user.profile_picture, class: "bd-placeholder-img") %>
+        </div>
+        <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="mb-0"><%= user.full_name %></h3>
+            <div class="mb-1 text-muted"><label>Contact: </label> <%= user.mobile_number %> </div>
+            <% @hostel_entry = user.hostel_entries.first %>
+            <% if !@hostel_entry.nil? %>
+                <% @rent_entry = @hostel_entry.rent_entries.first %>
+                <div class="card-text mb-auto">
+                    <p>Room No: <%= @hostel_entry.room_id %>, Deposit: <%= @hostel_entry.deposit %></p>
+                    <% if !@rent_entry.nil? %>
+                        <p>Current entry:</p>
+                        <ul class="list-group list-group-horizontal">
+                          <li class="list-group-item"><%= @rent_entry.display_date(@rent_entry.from_date) %> - <%= @rent_entry.display_date(@rent_entry.to_date) %></li>
+                          <li class="list-group-item">Rent <%= @rent_entry.rent %></li>
+                        </ul>
+                        <li class="list-group-item"><%= @rent_entry.payment %></li>
+                    <% end %>
+                </div>  
+            <% end %>
+            <%= link_to 'View profile', user_path(user), class: 'stretched-link' %>
+        </div>
+    </div>
+</div>
