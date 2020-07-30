@@ -8,8 +8,9 @@
         <p class="card-text">Mobile: <%= @user.mobile_number %></p>
         <p class="card-text">Email: <%= @user.email %></p>
         <% if @user.documents.attached? %>
-        <p class="card-text">Identity Proof:
+        <p class="card-text">
           <ul class="list-inline">
+            <li class="list-inline-item">Identity proof: </li>
             <% @user.documents.each_with_index do |document, doc_index| %>
               <li class="list-inline-item"><%= link_to("Document#{doc_index+1}", url_for(document), target: '_blank') %></li>
             <% end %>

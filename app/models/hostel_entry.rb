@@ -7,7 +7,8 @@ class HostelEntry < ApplicationRecord
 	has_many :rent_entries, dependent: :destroy
 
 	validates :joining_date, presence: true
-	before_save :fill_date_deposit
+
+	before_create :fill_date_deposit_due_rent
 
 	def display_joining_date
 		self.joining_date.to_formatted_s(:long)
@@ -29,13 +30,15 @@ class HostelEntry < ApplicationRecord
 		end
 	end
 	private
-		def fill_date_deposit
-			if !booking_date.present?
+		def fill_date_deposit_due_rent
+			unless booking_date.present?
 				self.booking_date = Date.current
 			end
-			if !deposit.present?
+			unless deposit.present?
 				self.deposit = 0
 			end
+			unless total_rent_due.present?
+				self.total_rent_due = 0
+			end
 		end
-
 end

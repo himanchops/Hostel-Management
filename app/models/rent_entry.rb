@@ -1,15 +1,18 @@
 class RentEntry < ApplicationRecord
-  belongs_to :hostel_entry
-  default_scope -> { order(to_date: :desc) }
+  belongs_to :hostel_entry #INVERSE
+  default_scope -> { order(to_date: :desc, from_date: :desc) }
 
   validates :from_date, presence: true
   validates :rent, presence: true, numericality: {only_integer: true}
   
-  before_save :fill_details
+  before_create :fill_details
+  after_create :add_total_rent_due
+  
+  before_update :update_total_rent_due
+  before_destroy :delete_total_rent_due
 
   def payment
-  	return if self.amount_paid.nil?
-  	s1 = "Paid: #{self.amount_paid}, Bal: #{self.rent-self.amount_paid}"
+  	s1 = "Paid: #{self.amount_paid}, Bal: #{self.balance}"
   	if payment_date.nil?
       return s1
     else
@@ -30,5 +33,24 @@ class RentEntry < ApplicationRecord
       unless amount_paid.present?
         self.amount_paid = 0
       end
+      self.balance = self.rent - self.amount_paid
+    end
+
+    def add_total_rent_due
+      value = self.hostel_entry.total_rent_due + self.balance
+      self.hostel_entry.update(total_rent_due: value)
+    end
+
+    def delete_total_rent_due
+      value = self.hostel_entry.total_rent_due - self.balance
+      self.hostel_entry.update(total_rent_due: value)
+    end
+
+    def update_total_rent_due
+      original_balance = self.balance
+      self.balance = self.rent - self.amount_paid
+
+      value = self.hostel_entry.total_rent_due - original_balance + self.balance
+      self.hostel_entry.update(total_rent_due: value)
     end
 end

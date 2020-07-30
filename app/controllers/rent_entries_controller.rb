@@ -1,6 +1,5 @@
 class RentEntriesController < ApplicationController
 	def new
-		
 	end
 
 	def create
@@ -28,6 +27,7 @@ class RentEntriesController < ApplicationController
 		@user = User.find(params[:user_id])
 		@hostel_entry = HostelEntry.find(params[:hostel_entry_id])
 		@rent_entry = RentEntry.find(params[:id])
+
 		respond_to do |format|
 		  if @rent_entry.update(rent_entry_params)
 		    format.js
