@@ -1,8 +1,8 @@
 class TenantsController < ApplicationController
 
   def show
-  	@user = User.find(params[:id])
-    @hostel_entry = @user.hostel_entries.reload.first
+  	@user = User.with_attached_avatar.includes(hostel_entries: :rent_entries).find(params[:id])
+    @hostel_entry = @user.hostel_entries.first
     @rooms = Room.all
   end
 
