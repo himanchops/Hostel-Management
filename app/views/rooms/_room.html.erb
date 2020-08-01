@@ -1,0 +1,21 @@
+<div class="col-md-6">
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col-auto d-none d-lg-block">
+            <%= image_tag("default_room.jpg", class: "bd-placeholder-img", size: "250x250") %>
+        </div>
+        <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="mb-0"><%= room.name %></h3>
+            <div class="mb-1 text-muted">Current Tenants: <%= room.users.count %>/<%= room.capacity %></div>
+            <div class="card-text mb-auto">
+                <div class="row">
+                    <% room.users.each do |user| %>
+                        <div class="col-md-6">
+                            <%= link_to user.full_name, user_path(user), class: "badge badge-pill badge-dark" %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            <%= link_to 'View room', room_path(room), class: 'stretched-link' %>
+        </div>
+    </div>
+</div>

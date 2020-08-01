@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
     <%= link_to "Chopra Boys Hostel", root_path, class: "navbar-brand" %>
     <% if current_user %>
@@ -12,7 +12,7 @@
             <%= link_to("Tenants", users_path, class: 'nav-link') %>
           </li>
           <li class='nav-item <%= 'active' if request.path == root_path %>' >
-            <%= link_to("Rooms", "#", class: 'nav-link') %>
+            <%= link_to("Rooms", rooms_path, class: 'nav-link') %>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

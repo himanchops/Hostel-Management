@@ -10,18 +10,20 @@
             <% if !@hostel_entry.nil? %>
                 <% @rent_entry = @hostel_entry.rent_entries.first %>
                 <div class="card-text mb-auto">
-                    <p>Room No: <%= @hostel_entry.room_id %>, Deposit: <%= @hostel_entry.deposit %></p>
+                    <h4><div class="badge badge-pill badge-light">Hostel info:</div></h4>
+                    <div class="badge badge-pill badge-dark">Room No: <%= @hostel_entry.room_id %></div>
+                    <div class="badge badge-pill badge-dark">Deposit: <%= @hostel_entry.deposit %></div>
                     <% if !@rent_entry.nil? %>
-                        <p>Current entry:</p>
+                        <h4><div class="badge badge-pill badge-light">Current entry:</div></h4>
                         <ul class="list-group list-group-horizontal">
-                          <li class="list-group-item"><%= @rent_entry.display_date(@rent_entry.from_date) %> - <%= @rent_entry.display_date(@rent_entry.to_date) %></li>
-                          <li class="list-group-item">Rent <%= @rent_entry.rent %></li>
+                            <li class="badge badge-pill badge-dark"><%= @rent_entry.display_date(@rent_entry.from_date) %> - <%= @rent_entry.display_date(@rent_entry.to_date) %></li>
+                            <li class="badge badge-pill badge-dark">Rent <%= @rent_entry.rent %></li>
+                            <li class="badge badge-pill badge-dark"><%= @rent_entry.payment %></li>
                         </ul>
-                        <li class="list-group-item"><%= @rent_entry.payment %></li>
                     <% end %>
                 </div>  
             <% end %>
-            <%= link_to 'View profile', user_path(user), class: 'stretched-link' %>
+            <%= link_to '', user_path(user), class: 'stretched-link' %>
         </div>
     </div>
 </div>
