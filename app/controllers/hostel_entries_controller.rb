@@ -1,4 +1,5 @@
 class HostelEntriesController < ApplicationController
+
   def create
 	 @user = User.find(params[:user_id])
 	 @hostel_entry = @user.hostel_entries.build(hostel_entry_params) 

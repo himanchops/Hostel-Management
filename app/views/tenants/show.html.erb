@@ -47,7 +47,7 @@
                     </div>
                     <div class="modal-body">
                       <%= @user.full_name %>
-                      <%= form_with(model: [@user, @hostel_entry], local: true) do |form| %>
+                      <%= form_with(model: [@user, @hostel_entry], local: true, validate: true) do |form| %>
                         <%= fields_for :hostel_entry do |he_form| %>
                           <div class="form-group">
                               <%= he_form.label :joining_date, class: 'col-form-label' %>
@@ -102,7 +102,7 @@
                   </div>
                   <div class="modal-body">
                     <%= @user.full_name %>
-                    <%= form_with(model: [@user, @user.hostel_entries.build], local: true) do |form| %>
+                    <%= form_with(model: [@user, @user.hostel_entries.build], local: true, validate: true) do |form| %>
                       <%= fields_for :hostel_entry do |he_form| %>
                         <div class="form-group">
                             <%= he_form.label :joining_date, class: 'col-form-label' %>
@@ -183,9 +183,6 @@
     </div>
   </div>
 </div>
-
-
-
 
 <!-- Switch 
 <div class="custom-control custom-switch">

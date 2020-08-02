@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'bootstrap', '~> 4.5.0'
 gem 'devise-bootstrap-views', '~> 1.0'
+gem 'client_side_validations'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
