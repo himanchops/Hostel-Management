@@ -1,11 +1,13 @@
 New, edit form inline, require refresh for first entry
 Make Total Rent Due in Hosetl Entry dynamic
-Styling tenant show page
-
 Validation for Rent Entries, conflicting dates
+Modal data-toggle
+Due Rent entry in red
+
+Styling tenant show page
 Automate new month entry checkbox
 Confirmation for VACATING TRIGGER for manager, handle vacating_date, rent_entry
 Tenant Profile - vacating notice, payment, chat
 Tenant index - Search, sort, filter
-
+Payments
 About, Contact, Rules, Location, Pictures
