@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+  validates :first_name, :last_name, presence: true
   validates :mobile_number, presence: true, numericality: {only_integer: true}, length: {is: 10}
   has_one_attached :avatar
   has_many_attached :documents

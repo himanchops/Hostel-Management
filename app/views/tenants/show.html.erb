@@ -47,7 +47,7 @@
                     </div>
                     <div class="modal-body">
                       <%= @user.full_name %>
-                      <%= form_with(model: [@user, @hostel_entry], local: true, validate: true) do |form| %>
+                      <%= form_with(model: [@user, @hostel_entry], local: true) do |form| %>
                         <%= fields_for :hostel_entry do |he_form| %>
                           <div class="form-group">
                               <%= he_form.label :joining_date, class: 'col-form-label' %>
@@ -86,53 +86,14 @@
               </div>
 
             <% else %>
-              <div class="text-center">
-                <button type='button' class="btn btn-primary btn-rounded mb-4" data-toggle='modal' data-target='#modalAddHostelEntryForm'>Add Hostel Entry</button>
-              </div>
+              <%= link_to 'Add Hostel Entry', new_user_hostel_entry_path(@user), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modalAddHostelEntryForm', class: 'btn btn-primary mb-4'} %>
+              <div class="modal hide fade" id="modalAddHostelEntryForm" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content"></div>
+                </div>
+              </div>              
             <% end %>
 
-            <div class="modal fade" id="modalAddHostelEntryForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header text-center">
-                    <h4 class="modal-title">Add Hostel Entry</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <%= @user.full_name %>
-                    <%= form_with(model: [@user, @user.hostel_entries.build], local: true, validate: true) do |form| %>
-                      <%= fields_for :hostel_entry do |he_form| %>
-                        <div class="form-group">
-                            <%= he_form.label :joining_date, class: 'col-form-label' %>
-                            <%= he_form.date_field :joining_date, class: 'form-control' %>
-                        </div>
-                        <div class="form-group">
-                          <%= he_form.label :vacate_date, class: 'col-form-label' %>
-                          <%= he_form.date_field :vacate_date, class: 'form-control' %>
-                        </div>
-                        <div class="form-group">
-                          <%= he_form.label :booking_date, class: 'col-form-label' %>
-                          <%= he_form.date_field :booking_date, class: 'form-control' %>
-                        </div>
-                        <div class="form-group">
-                          <%= he_form.label :deposit, class: 'col-form-label' %>
-                          <%= he_form.text_field :deposit, class: 'form-control' %>
-                        </div>
-                        <div class="form-group">
-                          <%= he_form.label :room_id, class: 'col-form-label' %>
-                          <%= he_form.collection_select :room_id, @rooms, :id, :name, class: 'form-control' %>
-                        </div>
-                      <% end %>
-                  </div>
-                  <div class="modal-footer">
-                    <%= form.submit "submit", class: 'btn btn-dark' %>
-                  </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
 
           </div>
       </div>
@@ -183,6 +144,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- Switch 
 <div class="custom-control custom-switch">

@@ -7,23 +7,29 @@
             <h3 class="mb-0"><%= user.full_name %></h3>
             <div class="mb-1 text-muted"><label>Contact: </label> <%= user.mobile_number %> </div>
             <% @hostel_entry = user.hostel_entries.first %>
-            <% if !@hostel_entry.nil? %>
+            <% if @hostel_entry.present? %>
                 <% @rent_entry = @hostel_entry.rent_entries.first %>
                 <div class="card-text mb-auto">
-                    <h2><div class="badge badge-pill badge-light">Hostel info:</div></h2>
+                    <h4><div class="badge badge-pill badge-light">Hostel info:</div></h4>
                     <h5>
                         <div class="badge badge-pill badge-dark">Room No: <%= @hostel_entry.room_id %></div>
                         <div class="badge badge-pill badge-dark">Deposit: <%= @hostel_entry.deposit %></div>
                     </h5>
-                    <% if !@rent_entry.nil? %>
-                        <h3><div class="badge badge-pill badge-light">Current entry:</div></h3>
-                        <h5>
+                    <% if @rent_entry.present? %>
+                        <div class="row">
+                            <div class="col-sm-5">
+                        <h5><div class="badge badge-pill badge-light">Current entry:</div></h5>
+                            </div>
+                            <div class="col-sm-3">
+                        <h6>
                             <ul class="list-group list-group-horizontal">
                                 <li class="badge badge-pill badge-dark"><%= @rent_entry.display_date(@rent_entry.from_date) %> - <%= @rent_entry.display_date(@rent_entry.to_date) %></li>
                                 <li class="badge badge-pill badge-dark">Rent <%= @rent_entry.rent %></li>
                             </ul>
                             <li class="badge badge-pill badge-dark"><%= @rent_entry.payment %></li>
-                        </h5>
+                        </h6>
+                        </div>
+                        </div>
                     <% end %>
                 </div>  
             <% end %>

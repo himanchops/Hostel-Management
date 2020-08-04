@@ -1,0 +1,4 @@
+$("#modalAddHostelEntryForm").find(".modal-content").html("<%= j (render 'new') %>");
+$('#modalAddHostelEntryForm').on('shown.bs.modal', function() {
+  $('form[data-validate]').enableClientSideValidations();
+}).modal('show');
