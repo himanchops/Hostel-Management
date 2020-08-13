@@ -1,8 +1,11 @@
 New, edit form inline, require refresh for first entry
 Make Total Rent Due in Hosetl Entry dynamic
-Validation for Rent Entries, conflicting dates
+Client Side Validation for Hostel entry, Rent entries, conflicting dates
 Modal data-toggle
 Due Rent entry in red
+Remove Avatar, attach avatar in devise controller
+
+
 
 Styling tenant show page
 Automate new month entry checkbox

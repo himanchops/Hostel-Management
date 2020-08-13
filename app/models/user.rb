@@ -14,18 +14,12 @@ class User < ApplicationRecord
 
   after_commit :add_default_avatar, on: %i[create update]
 
-
-
   def full_name
   	"#{first_name} #{last_name}" if first_name || last_name
   end
 
   def profile_picture
     self.avatar.variant(resize_and_pad: [200,200]).processed
-  end
-
-  def display_hostel_details
-  
   end
 
   private
