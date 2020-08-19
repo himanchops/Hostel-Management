@@ -4,6 +4,8 @@ class RoomsController < ApplicationController
   end
 
   def show
-  	@room = Room.includes(:users).find(params[:id])
+  	@room = Room.find(params[:id])
+  	@users = @room.users.includes(:hostel_entries).where(hostel_entries: { vacated: false })
   end
+
 end

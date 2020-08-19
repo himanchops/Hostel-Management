@@ -9,18 +9,7 @@ class HostelEntry < ApplicationRecord
 	validates :joining_date, presence: true
 
 	before_create :fill_date_deposit_due_rent
-
-	def display_joining_date
-		self.joining_date.to_formatted_s(:long)
-	end
-
-	def display_vacate_date
-		if vacate_date.nil?
-			return 'Not declared'
-		else
-			self.vacate_date.to_formatted_s(:long)
-		end
-	end
+	before_save :set_vacated
 
 	def display_room
 		if self.room_id.nil?
@@ -29,6 +18,7 @@ class HostelEntry < ApplicationRecord
 			self.room.name
 		end
 	end
+
 	private
 		def fill_date_deposit_due_rent
 			unless booking_date.present?
@@ -39,6 +29,12 @@ class HostelEntry < ApplicationRecord
 			end
 			unless total_rent_due.present?
 				self.total_rent_due = 0
+			end
+		end
+
+		def set_vacated
+			unless self.rent_entries.present?
+				self.vacated = true
 			end
 		end
 end

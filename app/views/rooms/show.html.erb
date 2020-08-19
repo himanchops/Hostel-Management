@@ -1,1 +1,35 @@
-<h1><%= @room.name %></h1>
+<div class="col-md-12">
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col-auto d-none d-lg-block">
+            <%= image_tag(@room.cover_picture.variant(resize_and_pad: [400,400]).processed, class: "bd-placeholder-img") %>
+        </div>
+        <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="mb-0"><%= @room.name %></h3>
+            <div class="mb-1 text-muted text-right">Capacity: <%= @users.count %>/<%= @room.capacity %></div>
+            <div class="card-text mb-auto">
+                <div class="row">
+                    <table class="table table-hover">
+                    	<caption>Current Tenants</caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Entry</th>
+                          <th scope="col">Rent</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      	<% @users.each do |user| %>
+	                        <tr>
+	                          <td><%= user.full_name %></td>
+	                          <% @rent_entry = user.hostel_entries.first.rent_entries.first %>
+	                          <td><%= @rent_entry.display_date(@rent_entry.from_date) %> - <%= @rent_entry.display_date(@rent_entry.to_date) %></td>
+	                          <td><%= @rent_entry.payment %></td>
+	                        </tr>
+	                    <% end %>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

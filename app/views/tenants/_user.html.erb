@@ -23,7 +23,7 @@
                             <div class="col-sm-3">
                         <h6>
                             <ul class="list-group list-group-horizontal">
-                                <li class="badge badge-pill badge-dark"><%= @rent_entry.display_date(@rent_entry.from_date) %> - <%= @rent_entry.display_date(@rent_entry.to_date) %></li>
+                                <li class="badge badge-pill badge-dark"><%= display_date_short(@rent_entry.from_date) %> - <%= display_date_short(@rent_entry.to_date) %></li>
                                 <li class="badge badge-pill badge-dark">Rent <%= @rent_entry.rent %></li>
                             </ul>
                             <li class="badge badge-pill badge-dark"><%= @rent_entry.payment %></li>

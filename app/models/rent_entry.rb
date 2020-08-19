@@ -20,14 +20,6 @@ class RentEntry < ApplicationRecord
   	end
   end
 
-  def display_date (date)
-  	if date.nil?
-  		'Nil'
-  	else
-  		date.to_formatted_s(:short)
-  	end
-  end
-
   private
     def fill_details
       unless amount_paid.present?

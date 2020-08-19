@@ -26,8 +26,8 @@
         <div class="card-body">
           <h2><div class='card header font-weight-bold card-title'>Hostel Entry</div></h2>
             <% if !@hostel_entry.nil? %>
-              <p class="card-text">Joining Date: <%= @hostel_entry.display_joining_date %></p>
-              <p class='card-text'>Vacating Date: <%= @hostel_entry.display_vacate_date %></p>
+              <p class="card-text">Joining Date: <%= display_date_long(@hostel_entry.joining_date) %></p>
+              <p class="card-text">Vacating Date: <%= display_date_long(@hostel_entry.vacate_date) %></p>
               <p class="card-text">Deposit: <%= @hostel_entry.deposit %></p>
               <p class="card-text">Room: <%= @hostel_entry.display_room %></p>
               <p class="card-text">Rent Due: <%= @hostel_entry.total_rent_due %></p>
